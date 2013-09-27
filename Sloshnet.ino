@@ -5,26 +5,26 @@ SoftwareSerial mySerial(6, 7);
 int NUM_PUMPS = 8;
 int testDrank[] = {0,1,0,0,0,0,0,0};
 
+int CLEANING_CYCLE[] = {10,10,10,10,10,10,10,10};
+int TEQUILA_SUNRISE[] = {1,4,0,0,0,0,0,0};
+                        // Vodka, OJ
 void setup() {
   mySerial.begin(9600);
-  stopPump(0);
-  //for (int i = 0; i < NUM_PUMPS; i++) {
-  //  stopPump(i);
-  //}
   for (int i = 0; i < NUM_PUMPS; i++) {
-    pourPortions(i, testDrank[i]);
+    pourPortions(i, TEQUILA_SUNRISE[i]);
     delay(1000);
   }
 }
 
 void loop() {
-  
+  // This could eventually listen for a button press 
+  // or text or something that will trigger a drink to be poured
 }
 
 void pourPortions(int pumpNum, int servings) {
   if (servings > 0) {
     runPump(pumpNum);
-    delay(750 * servings);
+    delay(1500 * servings);
     stopPump(pumpNum);
   }
 }
